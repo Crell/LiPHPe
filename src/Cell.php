@@ -63,14 +63,14 @@ class Cell
         }
 
         $liveNeighbors = count(array_filter($this->neighbors, function(Cell $cell) {
-            return is_numeric($cell);
+            return $cell->isPlayer();
         }));
 
         // See if a cell should be born.
         if ($currentState === 'E' && in_array($liveNeighbors, range(1, 4)) && $liveNeighbors + $neighborCounts['F'] >=3) {
             $speciesCounts = $this->arrayFilterKey($neighborCounts, 'is_numeric');
             $candidateState = array_keys($speciesCounts, max($speciesCounts))[0];
-            if ($speciesCounts[$candidateState] = $neighborCounts['F'] >= 4) {
+            if ($speciesCounts[$candidateState] + $neighborCounts['F'] >= 3) {
                 $this->state = $candidateState;
             }
         // Otherwise, see if it dies.
@@ -132,6 +132,11 @@ class Cell
     {
         $matchedKeys = array_filter(array_keys($array), $callback);
         return array_intersect_key($array, array_flip($matchedKeys));
+    }
+
+    public function isPlayer()
+    {
+        return is_numeric($this->state);
     }
 
     public function __toString()
