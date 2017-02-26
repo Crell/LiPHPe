@@ -16,7 +16,7 @@ class Cell
     /**
      * The neighbor cells (techncially in the other state buffer) that influence this cell.
      *
-     * @var array
+     * @var Cell[]
      */
     protected $neighbors = [];
 
@@ -80,6 +80,12 @@ class Cell
             $this->state = $currentState;
         }
 
+        return $this;
+    }
+
+    public function setMirrorCell(Cell $mirror)
+    {
+        $this->mirror = $mirror;
         return $this;
     }
 
