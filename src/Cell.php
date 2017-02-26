@@ -80,42 +80,7 @@ class Cell
             $this->state = $currentState;
         }
 
-        /*
-
-        neighborStates = [str(n) for n in self.neighbors]
-        counts = {item: neighborStates.count(item) for item in neighborStates}
-
-        # Precompute the neighborStates for performance.
-        neighborStates = [str(n) for n in self.neighbors]
-        counts = {item: neighborStates.count(item) for item in neighborStates}
-
-        # Ensure certain keys are mentioned so there's no missing key error later.
-        for key in ['F', 'R', 'E', currentState]:
-            if not key in counts:
-                counts[key] = 0
-
-        liveNeighbors = len([n for n in self.neighbors if n.state.isdigit()])
-
-        # See if a cell should be born.
-        if currentState == 'E' and liveNeighbors in xrange(1, 4) and liveNeighbors + counts['F'] >=3:
-            speciesCounts = {species: counts[species] for species in counts if species.isdigit()}
-            candidateState = max(speciesCounts.iteritems(), key=operator.itemgetter(1))[0]
-            if (speciesCounts[candidateState] + counts['F']) >= 3:
-                self.state = candidateState
-        # Otherwise, see if it dies.
-        elif currentState.isdigit() and (liveNeighbors >= 4 or (counts[currentState] + counts['F']) < 2):
-                self.state = 'E'
-        else:
-            self.state = currentState
-
-        return self
-
-
-
-         */
-
         return $this;
-
     }
 
     /**
