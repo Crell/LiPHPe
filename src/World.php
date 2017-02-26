@@ -57,4 +57,27 @@ class World
         return $neighbors;
     }
 
+    protected function getActiveGrid()
+    {
+        return $this->grids[$this->current];
+    }
+
+    protected function getInactiveGrid()
+    {
+        return $this->grids[($this->current + 1) % 2];
+    }
+
+    public function __toString()
+    {
+        $out = '';
+
+        foreach ($this->getActiveGrid() as $x => $cols) {
+            foreach ($cols as $y => $cell) {
+                $out .= $cell;
+            }
+            $out .= PHP_EOL;
+        }
+
+        return $out;
+    }
 }
