@@ -63,7 +63,7 @@ class World
         foreach (range(max($x - 1, 0), min($x + 1, $this->rows - 1)) as $i) {
             foreach (range(max($y - 1, 0), min($y + 1, $this->cols - 1)) as $j) {
                 if (!($i == $x && $j == $y)) {
-                    $neighbors[] = $target[$x][$y];
+                    $neighbors[] = $target[$i][$j];
                 }
             }
         }
