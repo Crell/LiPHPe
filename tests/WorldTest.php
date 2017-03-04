@@ -94,4 +94,29 @@ class WorldTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('1', (string)$w->cellAt(3, 3));
     }
 
+    public function testStepWithFoodAndRocks()
+    {
+        $w = new World(5, 10);
+
+        $w->place('1', 2, 2)
+            ->place('F', 2, 3)
+            ->place('1', 2, 4)
+            ->place('R', 3, 3);
+
+        $w->step();
+
+        # Two cells should have died.
+        $this->assertEquals('E', (string)$w->cellAt(2, 2));
+        $this->assertEquals('E', (string)$w->cellAt(2, 4));
+
+        # Food cell doesn't change.
+        $this->assertEquals('F', (string)$w->cellAt(2, 3));
+
+        # Rock cell doesn't change.
+        $this->assertEquals('R', (string)$w->cellAt(3, 3));
+
+        # One cell should be born.
+        $this->assertEquals('1', (string)$w->cellAt(1, 3));
+    }
+
 }
