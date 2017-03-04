@@ -45,6 +45,31 @@ class World
         return $this;
     }
 
+    public function step()
+    {
+        // Update all cell values in the inactive grid.
+
+        /** @var Cell $cell */
+        foreach ($this->cellIterator($this->getInactiveGrid()) as $coord => $cell) {
+            $cell->updateValue();
+        }
+
+        // Now set that grid active.
+        $this->current = ($this->current + 1) % 2;
+
+        return;
+    }
+
+    protected function cellIterator(array $grid)
+    {
+        foreach ($grid as $x => $col) {
+            /** @var Cell $cell */
+            foreach ($col as $y => $cell) {
+                yield ['x' => $x, 'y' => $y] => $cell;
+            }
+        }
+    }
+
     protected function setGridSources(array $grid, array $target)
     {
         foreach ($grid as $x => $col) {
