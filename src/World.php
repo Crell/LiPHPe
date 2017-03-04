@@ -32,6 +32,11 @@ class World
         $this->grids[1] = $this->setGridSources($this->grids[1], $this->grids[0]);
     }
 
+    public function cellAt($x, $y)
+    {
+        return $this->getActiveGrid()[$x][$y];
+    }
+
     protected function setGridSources(array $grid, array $target)
     {
         foreach ($grid as $x => $col) {
