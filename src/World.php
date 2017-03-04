@@ -42,6 +42,12 @@ class World
         $grid = $this->getActiveGrid();
         $grid[$x][$y]->setState($state);
 
+        // Food and Rocks are persistent, so set them on both grids.
+        if (in_array($state, ['F', 'R'])) {
+            $grid = $this->getInactiveGrid();
+            $grid[$x][$y]->setState($state);
+        }
+
         return $this;
     }
 
