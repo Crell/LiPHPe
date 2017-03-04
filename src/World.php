@@ -37,6 +37,14 @@ class World
         return $this->getActiveGrid()[$x][$y];
     }
 
+    public function place($state, $x, $y)
+    {
+        $grid = $this->getActiveGrid();
+        $grid[$x][$y]->setState($state);
+
+        return $this;
+    }
+
     protected function setGridSources(array $grid, array $target)
     {
         foreach ($grid as $x => $col) {
