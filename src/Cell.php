@@ -117,6 +117,8 @@ class Cell
 
     public function __toString()
     {
-        return $this->state;
+        // If state is an integer string, for a player, PHP will try to make it
+        // an actual int and choke on a bad return type if we don't force it. Weird.
+        return (string)$this->state;
     }
 }
