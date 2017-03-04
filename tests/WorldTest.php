@@ -15,7 +15,7 @@ class WorldTest extends \PHPUnit_Framework_TestCase
         $w = new World(5, 10);
 
         $this->assertEquals('E', $w->cellAt(1, 1));
-        $this->assertEquals('E', $w->cellAt(5, 10));
+        $this->assertEquals('E', $w->cellAt(4, 9));
     }
 
     public function testPopulateRocks()

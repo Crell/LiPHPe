@@ -21,8 +21,8 @@ class World
         $this->rows = $rows;
         $this->cols = $cols;
 
-        foreach (range(0, $rows) as $row) {
-            foreach (range(0, $cols) as $col) {
+        foreach (range(0, $rows-1) as $row) {
+            foreach (range(0, $cols-1) as $col) {
                 $this->grids[0][$row][$col] = new Cell('E');
                 $this->grids[1][$row][$col] = new Cell('E');
             }
