@@ -72,13 +72,12 @@ class World
 
     protected function setGridSources(array $grid, array $target)
     {
-        foreach ($grid as $x => $col) {
-            /** @var Cell $cell */
-            foreach ($col as $y => $cell) {
-                $cell->setMirrorCell($target[$x][$y]);
-                $cell->setSourceNeighbors($this->getCellNeighbors($target, $x, $y));
-            }
+        /** @var Cell $cell */
+        foreach ($this->cellIterator($grid) as $coord => $cell) {
+            $cell->setMirrorCell($target[$coord['x']][$coord['y']]);
+            $cell->setSourceNeighbors($this->getCellNeighbors($target, $coord['x'], $coord['y']));
         }
+
         return $grid;
     }
 
